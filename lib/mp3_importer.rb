@@ -15,10 +15,13 @@ class MP3Importer
     @dir = Dir.new(@path)
     file_list = @dir.entries.collect{|file| file.end_with?(".mp3") ? file : nil }.compact
     # file_list.compact
+    #Solution: @files ||= Dir.glob("#{path}/*.mp3").collect{ |f| f.gsub("#{path}/", "") }
+
+    
   end
 
   def import
-    files.each {|song| Song.new_by_filename}
+    files.each {|song| Song.new_by_filename(song)}
   end
 
 
